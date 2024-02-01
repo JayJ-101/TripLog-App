@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using TripLog_App.Models.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TripLogContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("TripLogContext");
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TripLogContext")));
 
 var app = builder.Build();
 
