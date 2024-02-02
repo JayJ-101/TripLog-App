@@ -13,6 +13,6 @@ namespace TripLog_App.Models.DataAccess
         }
         public string[] GetIncludes() => includes;
         public bool HasWhere => Where != null!;
-        public bool HasOrderby => OrderBy != null;
+        public bool HasOrderBy => OrderBy != null;
     }
 }
