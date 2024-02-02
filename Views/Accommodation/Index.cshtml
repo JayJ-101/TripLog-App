@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Accommodation>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage Accomodations</h2>
+
+<div class="m-2">
+    <i class='bx bx-plus'></i>
+    <a asp-action="Add" class="btn btn-dark">Add Accommodation</a>
+</div>
+
+<form asp-action="Delete" method="post">
+
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccommodationName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+            
+        </thead>
+
+        <tbody>
+            @foreach(Accommodation  acc in Model)
+            {
+                <tr>
+                    <td>@acc.AccommodationName</td>
+                    <td>@acc.Phone</td>
+                    <td>@acc.Email</td>
+                    <td>
+                        <button type="submit" name="id" value="@acc.AccommodationId"
+                            class="btn btn-primary">Delete</button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

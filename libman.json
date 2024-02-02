@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "boxicons@2.1.4",
+      "destination": "wwwroot/lib/boxicons/"
+    },
+    {
+      "library": "bootstrap-sweetalert@1.0.1",
+      "destination": "wwwroot/lib/sweetalert/",
+      "files": [
+        "sweetalert.min.js",
+        "sweetalert.min.css"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@5.3.2",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "js/bootstrap.esm.min.js",
+        "css/bootstrap.min.css"
+      ]
+    }
+  ]
+}
