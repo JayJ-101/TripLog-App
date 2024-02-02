@@ -14,12 +14,12 @@ namespace TripLog_App.Controllers
 
         public IActionResult Index()
         {
-            var accom = data.List(new Queryoptions<Accommodation>()
+            var accommodation = data.List(new Queryoptions<Accommodation>()
             {
                 Where = a => a.AccommodationId > 0,
                 OrderBy = a => a.AccommodationName
             });
-            return View(accom);
+            return View(accommodation);
         }
         [HttpGet]
         public IActionResult Add()
@@ -40,6 +40,15 @@ namespace TripLog_App.Controllers
             {
                 return View(model);
             }
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var accom = data.Get(id);
+            data.Delete(accom);
+            data.Save();
+            TempData["message"] = $"{accom.AccommodationName} has been deleted successfully";
+            return RedirectToAction("Index");
         }
     }
 }

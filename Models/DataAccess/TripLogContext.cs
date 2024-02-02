@@ -7,7 +7,8 @@ namespace TripLog_App.Models.DataAccess
     {
         public TripLogContext(DbContextOptions<TripLogContext> options) : base(options) { }
 
-        public DbSet<Accommodation> Accommodations { get; set; } = null!; 
+        public DbSet<Accommodation> Accommodations { get; set; } = null!;
+        public DbSet<Destination> Destination { get; set; } = null!;
 
     }
 }

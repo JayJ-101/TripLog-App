@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Destination>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Manage Accommodation</h2>
+
+<div class="m-2">
+    <a asp-action="Add" class="btn btn-dark">Add Destination</a>
+</div>
+<form class="Delete" method="post">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DestName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Destination dest in Model)
+            {
+                <tr>
+                    <td>
+                        @dest.DestName
+                    </td>
+                    <td>
+                        <button type="submit" name="id" value="@dest.DestinationId"
+                                class="btn btn-dark">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
