@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Activity>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Manage Activity</h2>
+
+<div class="m-2">
+    <i class='bx bx-plus'></i>
+    <a asp-action="Add" class="btn btn-dark">Add Activity</a>
+</div>
+
+<form asp-action="Delete" method="post">
+
+    <table class="table table-bordered table-striped table-sm table-dark">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActivityName)
+                </th>
+                <th></th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            @foreach (Activity act in Model)
+            {
+                <tr>
+                    <td>@act.ActivityName</td>
+                    
+                    <td>
+                        <button type="submit" name="id" value="@act.ActivityId"
+                                class="btn btn-primary">
+                            Delete
+                        </button>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
