@@ -9,6 +9,7 @@ namespace TripLog_App.Models.DataAccess
 
         public DbSet<Accommodation> Accommodations { get; set; } = null!;
         public DbSet<Destination> Destination { get; set; } = null!;
+        public DbSet<Activity> Activities { get; set; } = null!;
 
     }
 }
