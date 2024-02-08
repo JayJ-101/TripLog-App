@@ -12,8 +12,8 @@
 
 <form asp-action="Delete" method="post">
 
-    <table class="table table-bordered table-striped table-sm table-dark">
-        <thead>
+    <table class="table table-bordered table-striped table-sm ">
+        <thead class="table-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.AccommodationName)
@@ -37,8 +37,11 @@
                     <td>@acc.Phone</td>
                     <td>@acc.Email</td>
                     <td>
-                        <button type="submit" name="id" value="@acc.AccommodationId"
-                            class="btn btn-primary">Delete</button>
+                        <button type="submit" name="id" 
+                                value="@acc.AccommodationId"
+                                class="btn btn-danger">
+                            Delete
+                        </button>
                     </td>
 
                 </tr>

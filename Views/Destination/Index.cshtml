@@ -11,7 +11,7 @@
 </div>
 <form class="Delete" method="post">
     <table class="table table-striped table-sm">
-        <thead>
+        <thead class="table-dark">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.DestName)
@@ -28,7 +28,7 @@
                     </td>
                     <td>
                         <button type="submit" name="id" value="@dest.DestinationId"
-                                class="btn btn-dark">
+                                class="btn btn-danger">
                             Delete
                         </button>
                     </td>
