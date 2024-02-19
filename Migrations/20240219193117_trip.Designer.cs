@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TripLog_App.Models.DataAccess;
 
@@ -11,9 +12,10 @@ using TripLog_App.Models.DataAccess;
 namespace TripLog_App.Migrations
 {
     [DbContext(typeof(TripLogContext))]
-    partial class TripLogContextModelSnapshot : ModelSnapshot
+    [Migration("20240219193117_trip")]
+    partial class trip
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

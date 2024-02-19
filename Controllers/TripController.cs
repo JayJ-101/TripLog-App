@@ -67,57 +67,5 @@ namespace TripLog_App.Controllers
             else
                 return RedirectToAction("Index", "Home");
         }
-        [HttpPost]
-        public IActionResult Add(TripViewModel vm)
-        {
-            if (vm.PageNumber == 1)
-            {
-                if (ModelState.IsValid)
-                {
-                    TempData["DestinationId"] = vm.Trip.DestinationId;
-                    TempData["AccommodaiondD"] = vm.Trip.AccommodationId;
-                    TempData["StartDate"] = vm.Trip.StartDate;
-                    TempData["EndDate"] = vm.Trip.EndDate;
-                    return RedirectToAction("Add", new { id = "Page2" });
-                }
-                else
-                {
-                    //invalid Data Validation
-                    vm.Destinations = destinationaData.List(new QueryOptions<Destination>
-                    {
-                        OrderBy = d => d.Name
-                    });
-                    vm.Accommodations = accomoadtionData.List(new QueryOptions<Accommodation>
-                    {
-                        OrderBy = a => a.AccommodationName
-                    });
-                    return View("Add1", vm);
-                }
-
-                
-            }
-            else if(vm.PageNumber == 2)
-            {
-                vm.Trip.DestinationId = (int)TempData["DestinationId"]!;
-                vm.Trip.AccommodationId = (int)TempData["AccommodaiondD"]!;
-                vm.Trip.StartDate = (DateTime)TempData["StartDate"]!;
-                vm.Trip.EndDate = (DateTime)TempData["EndDate"]!;
-
-                foreach (int id in vm.SelectedActivities)
-                {
-                    var activity = activityData.Get(id)!;
-                    if (activity != null)
-                    {
-                        vm.Trip.Activities.Add(activity);
-                    }
-                }
-                tripData.Insert(vm.Trip);
-                tripData.Save();
-                //get destination for notification message
-                var dest = destinationaData.Get(vm.Trip.DestinationId);
-                TempData["Message"] = $"Trip To {dest?.Name} added.";
-                return RedirectToAction("Index", "Home");
-            }
-        }
     }
 }

@@ -1,32 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Core.Types;
 using System.Diagnostics;
 using TripLog_App.Models;
+using TripLog_App.Models.DataAccess;
+using TripLog_App.Models.DomainModels;
 
 namespace TripLog_App.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private Repository<Trip> data { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(TripLogContext ctx)
         {
-            _logger = logger;
+            data = new Repository<Trip>(ctx);
         }
-
         public IActionResult Index()
         {
-            return View();
+            var options = new Queryoptions<Trip>()
+            {
+                Includes = "Destination, Accommodation, Activities",
+                OrderBy = t=> t.StartDate!
+            };
+            var trips = data.List(options);
+            return View(trips);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+       
+        
     }
 }
