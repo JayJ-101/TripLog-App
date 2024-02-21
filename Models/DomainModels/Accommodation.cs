@@ -4,6 +4,8 @@ namespace TripLog_App.Models.DomainModels
 {
     public class Accommodation
     {
+        public Accommodation() => Trips = new HashSet<Trip>();
+
         public int AccommodationId { get; set; }
 
         [Required(ErrorMessage = "Please enter accommodation name.")]
@@ -13,6 +15,9 @@ namespace TripLog_App.Models.DomainModels
         public string? Phone { get; set; }
         public string? Email { get; set; }
 
-        
+        public ICollection<Trip> Trips { get; set; }
+
+        public bool HasPhone => !string.IsNullOrEmpty(Phone);
+        public bool HasEmail => !string.IsNullOrEmpty(Email);
     }
 }

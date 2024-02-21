@@ -1,14 +1,56 @@
-﻿@model IEnumerable<TripLog_App.Models.DomainModels.Trip>
+﻿@model IEnumerable<Trip>
 
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Add1" asp-controller="TripController">Add Trip</a>
-</p>
+<div class="m-2">
+    <a asp-action="Add1" asp-controller="TripController" asp-route-id="page1">Add Trip</a>
+</div>
+<form asp-action="Delete" asp-controller="Trip">
+    <table class="table table-bordered table-striped mt-2">
+        <thead>
+           <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Accommodation</th>
+                <th>Things To Do</th>
+                <th></th>
+           </tr>
+            
+        </thead>
+        <tbody>
+            @foreach(Trip trip in Model)
+            {
+                <tr>
+                    <td>@trip.Destination.DestName</td>
+                    <td>@trip.StartDate?.ToShortDateString()</td>
+                    <td>@trip.EndDate?.ToLongDateString()</td>
+                    <td>
+                        <div>@trip.Accommodation.AccommodationName</div>
+                        @if(trip.Accommodation.HasPhone)
+                        {
+                            <div>Phone: @trip.Accommodation.Phone</div>
+                        }
+                        @if(trip.Accommodation.HasEmail)
+                        {
+                            <div>Email: @trip.Accommodation.Email</div>
+                        }
+                    </td>
+                    <td>
+                        @foreach(Activity act in trip.Activities )
+                        {
+                            <div>@act.ActivityName</div>
+                        }
+                    </td>
+                    <td>
+                        <button type="submit" name="id" value="@trip.TripId" class="btn btn-primary">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
 <table class="table">
     <thead>
         <tr>
