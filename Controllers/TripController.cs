@@ -54,7 +54,7 @@ namespace TripLog_App.Controllers
             {
                 vm.PageNumber = 2;
 
-                int destId = (int)TempData.Peek("DestinationId")!;
+                int destId = (int)TempData.Peek("DestinationID")!;
                 vm.Trip.Destination = destinationaData.Get(destId)!;
 
                 //Get Data for Select List

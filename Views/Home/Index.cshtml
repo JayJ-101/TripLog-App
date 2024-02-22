@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 <div class="m-2">
-    <a asp-action="Add1" asp-controller="TripController" asp-route-id="page1">Add Trip</a>
+    <a asp-action="Add" asp-controller="TripController" asp-route-id="page1" class="btn btn-dark">Add Trip</a>
 </div>
 <form asp-action="Delete" asp-controller="Trip">
     <table class="table table-bordered table-striped mt-2">
@@ -51,45 +51,4 @@
         </tbody>
     </table>
 </form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Destination)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Accommodation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination.DestName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accommodation.AccommodationName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TripId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TripId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TripId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+

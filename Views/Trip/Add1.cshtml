@@ -9,15 +9,15 @@
 <form asp-action="Add" method="post">
     <input type="hidden" asp-for="PageNumber" />
     <div class="mb-3">
-        <label asp-for="Trip.DestinationId" class="form-label">Destination</label>
-        <select asp-for="Trip.DestinationId" class="form-select"
+        <label asp-for="Trip.DestinationID" class="form-label">Destination</label>
+        <select asp-for="Trip.DestinationID" class="form-select"
                 asp-items="@(new SelectList(Model.Destinations,"DestinationId","DestName"))">
             <option value="0"></option>
         </select>
     </div>
     <div class="mb-3">
-        <label asp-for="Trip.AccommodationId" class="form-label">Accomodation</label>
-        <select asp-for="Trip.AccommodationId" class="form-select"
+        <label asp-for="Trip.AccommodationID" class="form-label">Accomodation</label>
+        <select asp-for="Trip.AccommodationID" class="form-select"
                 asp-items="@(new SelectList(Model.Accommodations,"AccommodationId","AccommodationName"))">
             <option value="0"></option>
         </select>
