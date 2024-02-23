@@ -1,0 +1,24 @@
+﻿@model TripViewModel
+@{
+    ViewBag.Title = "Add Trip - Page 1";
+}
+
+<h1>
+    Add Things to Do in @Model.Trip.Destination.DestName
+</h1>
+<form asp-action="Add" method="post">
+    <input type="hidden" asp-for="PageNumber" />
+    <p>Hold CTR key to select multiple Activities</p>
+
+    <div class="mb-3">
+        <select asp-for="SelectedActivities" class="form-select"
+                asp-items="@(new SelectList(Model.Activities, "ActivityID","ActivityName"))"
+                multiple size="10">
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-dark">Next</button>
+        <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
+    </div>
+</form>
