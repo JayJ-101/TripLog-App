@@ -1,11 +1,12 @@
 ﻿@model TripViewModel
 @{
-    ViewBag.Title = "Add Trip - Page 1";
+    ViewBag.Title = "Add Trip - Page2";
 }
 
 <h1>
     Add Things to Do in @Model.Trip.Destination.DestName
 </h1>
+
 <form asp-action="Add" method="post">
     <input type="hidden" asp-for="PageNumber" />
     <p>Hold CTR key to select multiple Activities</p>

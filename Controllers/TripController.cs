@@ -42,10 +42,10 @@ namespace TripLog_App.Controllers
                     OrderBy = d => d.AccommodationName
                 });
 
-                vm.Activities = activityData.List(new Queryoptions<Activity>()
-                {
-                    OrderBy = d => d.ActivityName
-                });
+                //vm.Activities = activityData.List(new Queryoptions<Activity>()
+                //{
+                //    OrderBy = d => d.ActivityName
+                //});
 
 
                 return View("Add1", vm);
@@ -62,10 +62,16 @@ namespace TripLog_App.Controllers
                 {
                     OrderBy = d => d.ActivityName
                 });
-                return View("Add1", vm);
+                return View("Add2", vm);
             }
             else
                 return RedirectToAction("Index", "Home");
+        }
+
+        public RedirectToActionResult Cancel()
+        {
+            TempData.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
