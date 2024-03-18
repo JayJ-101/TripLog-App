@@ -16,7 +16,7 @@ namespace TripLog_App.Controllers
         {
             var accommodation = data.List(new Queryoptions<Accommodation>()
             {
-                Where = a => a.AccommodationId > 0,
+                Where = a => a.AccommodationID > 0,
                 OrderBy = a => a.AccommodationName
             });
             return View(accommodation);

@@ -6,7 +6,7 @@ namespace TripLog_App.Models.DomainModels
     {
         public Accommodation() => Trips = new HashSet<Trip>();
 
-        public int AccommodationId { get; set; }
+        public int AccommodationID { get; set; }
 
         [Required(ErrorMessage = "Please enter accommodation name.")]
         [Display(Name = "Accomodation Name")]

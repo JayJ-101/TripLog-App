@@ -11,14 +11,14 @@
     <div class="mb-3">
         <label asp-for="Trip.DestinationID" class="form-label">Destination</label>
         <select asp-for="Trip.DestinationID" class="form-select"
-                asp-items="@(new SelectList(Model.Destinations,"DestinationId","DestName"))">
+                asp-items="@(new SelectList(Model.Destinations,"DestinationID","DestName"))">
             <option value="0"></option>
         </select>
     </div>
     <div class="mb-3">
         <label asp-for="Trip.AccommodationID" class="form-label">Accomodation</label>
         <select asp-for="Trip.AccommodationID" class="form-select"
-                asp-items="@(new SelectList(Model.Accommodations,"AccommodationId","AccommodationName"))">
+                asp-items="@(new SelectList(Model.Accommodations,"AccommodationID","AccommodationName"))">
             <option value="0"></option>
         </select>
     </div>

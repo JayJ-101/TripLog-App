@@ -16,7 +16,7 @@ namespace TripLog_App.Controllers
         {
             var activity = data.List(new Queryoptions<Activity>()
             {
-                Where = a => a.ActivityId > 0,
+                Where = a => a.ActivityID > 0,
                 OrderBy = a => a.ActivityName
             });
             return View(activity);

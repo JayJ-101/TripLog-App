@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using TripLog_App.Models.DataAccess;
 using TripLog_App.Models.DomainModels;
 using TripLog_App.Models.ViewModels;
@@ -42,10 +41,10 @@ namespace TripLog_App.Controllers
                     OrderBy = d => d.AccommodationName
                 });
 
-                //vm.Activities = activityData.List(new Queryoptions<Activity>()
-                //{
-                //    OrderBy = d => d.ActivityName
-                //});
+                vm.Activities = activityData.List(new Queryoptions<Activity>()
+                {
+                    OrderBy = d => d.ActivityName
+                });
 
 
                 return View("Add1", vm);
@@ -67,6 +66,57 @@ namespace TripLog_App.Controllers
             else
                 return RedirectToAction("Index", "Home");
         }
+        [HttpPost]
+        public IActionResult Add(TripViewModel vm)
+        {
+            if (vm.PageNumber == 1)
+            {
+                if (ModelState.IsValid)
+                {
+                    TempData["DestinationID"] = vm.Trip.DestinationID;
+                    TempData["AccommodationID"] = vm.Trip.AccommodationID;
+                    TempData["StartDate"] = vm.Trip.StartDate;
+                    TempData["EndDate"] = vm.Trip.EndDate;
+                    return RedirectToAction("Add", new { id = "Page2" });
+                }
+                else
+                {
+                    vm.Destinations = destinationaData.List(new Queryoptions<Destination>()
+                    {
+                        OrderBy = d => d.DestName
+                    });
+                    vm.Accommodations = accomoadtionData.List(new Queryoptions<Accommodation>()
+                    {
+                        OrderBy = a => a.AccommodationName
+                    });
+                }
+            }
+            else if (vm.PageNumber == 2)
+            {
+                vm.Trip.DestinationID = (int)TempData["DestinationID"]!;
+                vm.Trip.AccommodationID = (int)TempData["AccommodationID"]!;
+                vm.Trip.StartDate = (DateTime)TempData["StartDate"]!;
+                vm.Trip.EndDate = (DateTime)TempData["EndDate"]!;
+
+                foreach (int id in vm.SelectedActivities)
+                {
+                    var activity = activityData.Get(id)!;
+                    if (activity != null)
+                    {
+                        vm.Trip.Activities.Add(activity);
+                    }
+                }
+                tripData.Insert(vm.Trip);
+                tripData.Save();
+                //get destination for notification message
+                var dest = destinationaData.Get(vm.Trip.DestinationID);
+                TempData["Message"] = $"Trip To {dest?.DestName} added.";
+                return RedirectToAction("Index", "Home");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
         public RedirectToActionResult Cancel()
         {
@@ -74,4 +124,5 @@ namespace TripLog_App.Controllers
             return RedirectToAction("Index", "Home");
         }
     }
+    
 }
